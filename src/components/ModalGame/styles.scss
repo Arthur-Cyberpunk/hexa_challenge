@@ -34,9 +34,18 @@
                 font-weight: 600;
             }
 
-            p:nth-child(2) {
+            .restartGame {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
                 color: #a5a8af;
                 background-color: #D2D7DF;
+                border-right: 3px solid #9EA6B0;
+                padding: 1rem 1rem;
+                font-weight: 600;
+                cursor: pointer;
             }
 
             .boxScore {
@@ -77,6 +86,30 @@
                 color: #E9EBEC;
                 background-color: #48525D;
                 text-transform: uppercase;
+                cursor: pointer;
+            }
+        }
+
+        .boxRandomColors {
+            width: 500px;
+            display: flex;
+            text-align: center;
+            margin-top: 2rem;
+            border-radius: 10px;
+            border: 3px solid #9EA6B0;
+
+            li {
+                width: 100%;
+                color: #48525D;
+                border-right: 3px solid #9EA6B0;
+                padding: 1rem 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                list-style: none;
+            }
+
+            li:nth-child(3) {
+                border-right: none;
             }
         }
     }
