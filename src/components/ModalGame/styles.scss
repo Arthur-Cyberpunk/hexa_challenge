@@ -40,12 +40,17 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                color: #a5a8af;
+                color: #E5E9EF;
                 background-color: #D2D7DF;
                 border-right: 3px solid #9EA6B0;
                 padding: 1rem 1rem;
                 font-weight: 600;
                 cursor: pointer;
+            }
+
+            .active {
+                color: #EBECEF;
+                background-color: #AAB1BB;
             }
 
             .boxScore {
@@ -87,6 +92,10 @@
                 background-color: #48525D;
                 text-transform: uppercase;
                 cursor: pointer;
+            }
+
+            .active {
+                display: none;
             }
         }
 
