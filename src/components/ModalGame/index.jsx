@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SideMenu from '../SideMenu';
 import "./styles.scss";
 
 const ModalGame = () => {
@@ -95,6 +96,8 @@ const ModalGame = () => {
 
   return (
     <div className="container">
+        <SideMenu></SideMenu>
+
       <div className="boxGuessColor">
         <h1 className="title">Guess the color</h1>
         <div className="boxTime">
