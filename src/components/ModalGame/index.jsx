@@ -5,6 +5,7 @@ const ModalGame = () => {
   const [currentColor, setCurrentColor] = useState('');
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(2);
   const [active, setActive] = useState(false);
 
@@ -35,14 +36,12 @@ const ModalGame = () => {
   }
 
   const checkAnswer = (selectedColor) => {
-    console.log(currentColor)
-    console.log(selectedColor)
-    
     if (selectedColor === currentColor) {
       setScore(score + 5);
     } else if (selectedColor !== currentColor) {
-        setScore(score - 1);
+        setScore(score + 1);
     }
+    
     startGame();
   }
 
@@ -54,7 +53,13 @@ const ModalGame = () => {
       }, 1000);
     } else if (secondsLeft === 0) {
       setCurrentColor('');
+      setOptions([]);
+      setScore(0);
       setActive(false)
+
+      if (highScore < score) {
+        setHighScore(score)
+    }
     }
 
     return () => clearTimeout(seconds);
@@ -68,6 +73,25 @@ const ModalGame = () => {
     startGame();
     setActive(true)
   }
+
+  useEffect(() => {
+    const masterScore = localStorage.getItem('high_score');
+
+    if (masterScore !== null) {
+        console.log('Nome:', masterScore);
+        setHighScore(masterScore)
+      } else {
+        console.log('Nome não encontrado no localStorage');
+      }
+  }, []);
+
+  useEffect(() => {
+    if (highScore > 0) {
+        localStorage.setItem('high_score', `${highScore}`);
+    }
+  }, [highScore]);
+
+
 
   return (
     <div className="container">
@@ -84,7 +108,7 @@ const ModalGame = () => {
             Restart
           </span>
           <div className="boxScore">
-            <p className="score">High Score 20</p>
+            <p className="score">High Score {highScore}</p>
             <p className="score">{`Score ${score ? score : "-"}`}</p>
           </div>
         </div>
