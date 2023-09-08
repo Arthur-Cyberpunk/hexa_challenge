@@ -6,6 +6,7 @@ const ModalGame = () => {
   const [appearColor, setAppear] = useState(false);
   const [seconds, setSeconds] = useState(5);
   const [isActive, setIsActive] = useState(false);
+  const [selectedColor, setSelectedColor] = useState('');
 
   const randomColors = () => {
     for (let i = 0; i < 3; i++) {
@@ -25,24 +26,34 @@ const ModalGame = () => {
     setAppear(false);
     setIsActive(false);
     setSeconds(5)
+    setSelectedColor('')
   };
 
   useEffect(() => {
     let intervalId;
 
-    if (isActive && seconds > 0) {
+    if (isActive) {
       intervalId = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
+
+      console.log('alo')
+
+      const randomIndex = Math.floor(Math.random() * color.length);
+      setSelectedColor(color[randomIndex]);
     } else {
-      setIsActive(false);
       clearInterval(intervalId);
       restart();
-      setSeconds(5)
     }
 
     return () => clearInterval(intervalId);
-  }, [isActive, seconds]);
+  }, [isActive]);
+
+  useEffect(() => {
+    if (seconds === 0) {
+        setIsActive(false);
+    }
+  }, [seconds])
 
   return (
     <div className="container">
@@ -63,7 +74,7 @@ const ModalGame = () => {
             <p className="score">Score -</p>
           </div>
         </div>
-        <div className="boxColor">
+        <div className="boxColor" style={{backgroundColor: selectedColor}}>
           <button
             className={`start ${isActive ? "active" : ""}`}
             onClick={randomColors}
