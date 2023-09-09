@@ -40,14 +40,17 @@ const ModalGame = () => {
   };
 
   const checkAnswer = (selectedColor) => {
-    setTimeLeft(9)
+    
 
     if (selectedColor === currentColor) {
       setScore(score + 5);
+      setTimeLeft(10)
     } else if (selectedColor === undefined) {
       setScore(score - 2);
+      setTimeLeft(9)
     } else {
         setScore(score - 1);
+        setTimeLeft(10)
     }
 
     startGame();
@@ -95,10 +98,6 @@ const ModalGame = () => {
       localStorage.setItem("high_score", `${highScore}`);
     }
   }, [highScore]);
-
-//   const restartTimer = () => {
-//     setProgress(100); // Reinicia a barra preenchida em 100%
-//   };
 
   useEffect(() => {
     if (active) {
