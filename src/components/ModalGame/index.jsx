@@ -40,7 +40,7 @@ const ModalGame = () => {
     if (selectedColor === currentColor) {
       setScore(score + 5);
     } else if (selectedColor !== currentColor) {
-        setScore(score + 1);
+        setScore(score - 1);
     }
     
     startGame();
