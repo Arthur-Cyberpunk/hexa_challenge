@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
-import SideMenu from '../SideMenu';
+import SideMenu from "../SideMenu";
 import "./styles.scss";
 
 const ModalGame = () => {
-  const [currentColor, setCurrentColor] = useState('');
+  const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(2);
+  const [secondsLeft, setSecondsLeft] = useState(30);
   const [active, setActive] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(10); // Tempo inicial em segundos
+  const totalTime = 10; // Tempo total em segundos
+  const progress = (timeLeft / totalTime) * 100;
 
   const generateRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
+    const letters = "0123456789ABCDEF";
+    let color = "#";
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+  };
 
   const startGame = () => {
     if (secondsLeft === 0) {
-        setSecondsLeft(2)
+      setSecondsLeft(30);
     }
-    
+
     const correctColor = generateRandomColor();
     const randomColor1 = generateRandomColor();
     const randomColor2 = generateRandomColor();
@@ -33,71 +36,91 @@ const ModalGame = () => {
 
     setCurrentColor(correctColor);
     setOptions(randomOptions);
-    setActive(true)
-  }
+    setActive(true);
+  };
 
   const checkAnswer = (selectedColor) => {
+    setTimeLeft(9)
+
     if (selectedColor === currentColor) {
       setScore(score + 5);
-    } else if (selectedColor !== currentColor) {
+    } else if (selectedColor === undefined) {
+      setScore(score - 2);
+    } else {
         setScore(score - 1);
     }
-    
+
     startGame();
-  }
+  };
 
   useEffect(() => {
     let seconds;
     if (secondsLeft > 0 && active) {
-        seconds = setTimeout(() => {
+      seconds = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1);
       }, 1000);
     } else if (secondsLeft === 0) {
-      setCurrentColor('');
+      setCurrentColor("");
       setOptions([]);
       setScore(0);
-      setActive(false)
+      setActive(false);
 
       if (highScore < score) {
-        setHighScore(score)
-    }
+        setHighScore(score);
+      }
     }
 
     return () => clearTimeout(seconds);
   }, [secondsLeft, active]);
 
   const restartGame = () => {
-    setCurrentColor('');
+    setCurrentColor("");
     setOptions([]);
     setScore(0);
-    setSecondsLeft(2);
+    setSecondsLeft(30);
     startGame();
-    setActive(true)
-  }
+    setActive(true);
+  };
 
   useEffect(() => {
-    const masterScore = localStorage.getItem('high_score');
+    const masterScore = localStorage.getItem("high_score");
 
     if (masterScore !== null) {
-        console.log('Nome:', masterScore);
-        setHighScore(masterScore)
-      } else {
-        console.log('Nome não encontrado no localStorage');
-      }
+      setHighScore(masterScore);
+    }
   }, []);
 
   useEffect(() => {
     if (highScore > 0) {
-        localStorage.setItem('high_score', `${highScore}`);
+      localStorage.setItem("high_score", `${highScore}`);
     }
   }, [highScore]);
 
+//   const restartTimer = () => {
+//     setProgress(100); // Reinicia a barra preenchida em 100%
+//   };
 
+  useEffect(() => {
+    if (active) {
+    const timer = setInterval(() => {
+      if (timeLeft > 0) {
+        setTimeLeft(timeLeft - 1);
+      } else {
+        // Quando o tempo atinge zero, reinicie instantaneamente
+        setTimeLeft(totalTime);
+        checkAnswer()
+      }
+    }, 1000);
+    return () => {
+        clearInterval(timer); // Limpa o temporizador quando o componente é desmontado
+      };
+    }
+
+  }, [active, timeLeft, totalTime]);
 
   return (
     <div className="container">
-        <SideMenu></SideMenu>
-
+      <SideMenu></SideMenu>
       <div className="boxGuessColor">
         <h1 className="title">Guess the color</h1>
         <div className="boxTime">
@@ -115,7 +138,10 @@ const ModalGame = () => {
             <p className="score">{`Score ${score ? score : "-"}`}</p>
           </div>
         </div>
-        <div className="boxColor" style={{backgroundColor: currentColor}}>
+        <div className="timer-container">
+          <div className="timer-bar" style={{ width: `${progress}%` }}></div>
+        </div>
+        <div className="boxColor" style={{ backgroundColor: currentColor }}>
           <button
             className={`start ${active ? "active" : ""}`}
             onClick={startGame}
