@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
-import LocalStorage from "../../hooks/localStorage";
+import ScoreLocalStorage from "../../hooks/scoreLocalStorage";
 import SideMenu from "../SideMenu";
 import "./styles.scss";
 
@@ -8,12 +8,13 @@ const ModalGame = () => {
   const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(30);
+  const [secondsLeft, setSecondsLeft] = useState(2);
   const [timeLeft, setTimeLeft] = useState(10);
   const totalTime = 10;
   const progress = (timeLeft / totalTime) * 100;
-  const [highScore, setHighScore] = LocalStorage("high_score");
-  const [, , clearLocalStorage] = LocalStorage('high_score', null);
+  
+  const [highScore, setHighScore] = ScoreLocalStorage("high_score");
+  const [, , clearLocalStorage] = ScoreLocalStorage('high_score', null);
 
   const { colorTime, active, setActive, setSecondsChoose, setColors } =
     useContext(GameContext);
@@ -28,6 +29,11 @@ const ModalGame = () => {
   };
 
   const startGame = () => {
+    if (secondsLeft === 0) {
+      setColors([]);
+      setSecondsLeft(2)
+    }
+
     const correctColor = generateRandomColor();
     const randomColor1 = generateRandomColor();
     const randomColor2 = generateRandomColor();
@@ -62,7 +68,6 @@ const ModalGame = () => {
     setScore(0);
     setTimeLeft(totalTime);
     setSecondsChoose(0);
-    setSecondsLeft(30);
   }
 
   const restartGame = () => {
@@ -79,8 +84,12 @@ const ModalGame = () => {
     resetGame()
     setColors([]);
     setHighScore('');
-    setActive(false);
   };
+
+  useEffect (()=> {
+    if (active === false)
+    setColors([])
+  }, [active, setColors])
 
   useEffect(() => {
     let seconds;
@@ -91,8 +100,6 @@ const ModalGame = () => {
     } else if (secondsLeft === 0) {
       resetGame()
       setActive(false);
-      setSecondsLeft(30);
-      setColors([]);
 
       if (highScore < score) {
         setHighScore(score);
