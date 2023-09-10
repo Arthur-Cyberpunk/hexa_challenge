@@ -9,10 +9,11 @@ const ModalGame = () => {
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(30);
-  const [timeLeft, setTimeLeft] = useState(9);
-  const totalTime = 9;
+  const [timeLeft, setTimeLeft] = useState(10);
+  const totalTime = 10;
   const progress = (timeLeft / totalTime) * 100;
   const [highScore, setHighScore] = LocalStorage("high_score");
+  const [, , clearLocalStorage] = LocalStorage('high_score', null);
 
   const { colorTime, active, setActive, setSecondsChoose, setColors } =
     useContext(GameContext);
@@ -27,11 +28,6 @@ const ModalGame = () => {
   };
 
   const startGame = () => {
-    if (secondsLeft === 0) {
-      setColors([]);
-      setSecondsLeft(30);
-    }
-
     const correctColor = generateRandomColor();
     const randomColor1 = generateRandomColor();
     const randomColor2 = generateRandomColor();
@@ -54,24 +50,36 @@ const ModalGame = () => {
     } else if (selectedColor === undefined) {
       setScore(score - 2);
     } else {
-      setScore(score + 1);
+      setScore(score - 1);
     }
 
     startGame();
   };
 
+  const resetGame = () => {
+    setCurrentColor("");
+    setOptions([]);
+    setScore(0);
+    setTimeLeft(totalTime);
+    setSecondsChoose(0);
+    setSecondsLeft(30);
+  }
+
   const restartGame = () => {
     if (active) {
-      setCurrentColor("");
-      setOptions([]);
-      setScore(0);
-      setSecondsLeft(30);
+      resetGame()
+      setColors([]);
       startGame();
       setActive(true);
-      setTimeLeft(totalTime);
-      setColors([]);
-      setSecondsChoose(0);
     }
+  };
+
+  const handleCleanLocalStorage = () => {
+    clearLocalStorage();
+    resetGame()
+    setColors([]);
+    setHighScore('');
+    setActive(false);
   };
 
   useEffect(() => {
@@ -81,12 +89,10 @@ const ModalGame = () => {
         setSecondsLeft(secondsLeft - 1);
       }, 1000);
     } else if (secondsLeft === 0) {
-      setCurrentColor("");
-      setOptions([]);
-      setScore(0);
+      resetGame()
       setActive(false);
-      setTimeLeft(totalTime);
-      setSecondsChoose(0);
+      setSecondsLeft(30);
+      setColors([]);
 
       if (highScore < score) {
         setHighScore(score);
@@ -157,6 +163,9 @@ const ModalGame = () => {
         ) : (
           <></>
         )}
+      </div>
+      <div className="resetAllData">
+        <p onClick={handleCleanLocalStorage}>Reset all data</p>
       </div>
     </div>
   );

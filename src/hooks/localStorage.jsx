@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const LocalStorage = (key) => {
+const LocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
 
@@ -13,7 +13,12 @@ const LocalStorage = (key) => {
     }
   }, [value]);
 
-  return [value, setValue];
+  const clearLocalStorage = () => {
+    localStorage.removeItem(key);
+    setValue(initialValue);
+  };
+
+  return [value, setValue, clearLocalStorage];
 };
 
 export default LocalStorage;
