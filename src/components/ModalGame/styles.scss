@@ -1,141 +1,141 @@
 .container {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  .boxGuessColor {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    text-transform: uppercase;
+    transform: translate(100%);
 
-    .boxGuessColor {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 6rem;
-        text-transform: uppercase;
-        transform: translate(100%);
-
-        .title {
-            font-size: 2.5rem;
-            color: #48525D;
-        }
-
-        .boxTime {
-            width: 500px;
-            display: flex;
-            margin-top: 4rem;
-            border-radius: 10px;
-            border: 3px solid #9EA6B0;
-            background-color: #E5E9F1;
-
-            .time {
-                width: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                color: #48525D;
-                border-right: 3px solid #9EA6B0;
-                padding: 1rem 1rem;
-                font-weight: 600;
-            }
-
-            .restartGame {
-                width: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                color: #E5E9EF;
-                background-color: #D2D7DF;
-                border-right: 3px solid #9EA6B0;
-                padding: 1rem 1rem;
-                font-weight: 600;
-                cursor: pointer;
-            }
-
-            .active {
-                color: #EBECEF;
-                background-color: #AAB1BB;
-            }
-
-            .boxScore {
-                width: 50%;
-
-                .score {
-                    color: #48525D;
-                    padding: 1rem 1rem;
-                    font-weight: 600;
-                    background-color: #E5E9F1;
-                    border-radius: 0 10px 0 0;
-                }
-
-                p:nth-child(1) {
-                    border-bottom: 3px solid #9EA6B0;
-                }
-
-                p:nth-child(2) {
-                    border-radius: 10px;
-                }
-            }
-        }
-
-        .timer-container {
-            width: 500px;
-            height: 20px;
-            background-color: #ddd;
-            overflow: hidden;
-            margin-top: 2rem;
-
-            .timer-bar {
-                width: 100%;
-                height: 100%;
-                background-color: #48525D;
-                transition: width 1s linear;
-            }
-        }
-
-        .boxColor {
-            width: 500px;
-            height: 400px;
-            background-color: #FEEED8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .start {
-                width: 12rem;
-                height: 3rem;
-                border-radius: 4px;
-                font-size: 1.2rem;
-                color: #E9EBEC;
-                background-color: #48525D;
-                text-transform: uppercase;
-                cursor: pointer;
-            }
-
-            .active {
-                display: none;
-            }
-        }
-
-        .boxRandomColors {
-            width: 500px;
-            display: flex;
-            text-align: center;
-            margin-top: 2rem;
-            border-radius: 10px;
-            border: 3px solid #9EA6B0;
-
-            li {
-                width: 100%;
-                color: #48525D;
-                border-right: 3px solid #9EA6B0;
-                padding: 1rem 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                list-style: none;
-            }
-
-            li:nth-child(3) {
-                border-right: none;
-            }
-        }
+    .title {
+      font-size: 2.5rem;
+      color: #48525d;
     }
+
+    .boxTime {
+      width: 500px;
+      display: flex;
+      margin-top: 4rem;
+      border-radius: 10px;
+      border: 3px solid #9ea6b0;
+      background-color: #e5e9f1;
+
+      .time {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #48525d;
+        border-right: 3px solid #9ea6b0;
+        padding: 1rem 1rem;
+        font-weight: 600;
+      }
+
+      .restartGame {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #e5e9ef;
+        background-color: #d2d7df;
+        border-right: 3px solid #9ea6b0;
+        padding: 1rem 1rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .active {
+        color: #ebecef;
+        background-color: #aab1bb;
+      }
+
+      .boxScore {
+        width: 50%;
+
+        .score {
+          color: #48525d;
+          padding: 1rem 1rem;
+          font-weight: 600;
+          background-color: #e5e9f1;
+          border-radius: 0 10px 0 0;
+        }
+
+        p:nth-child(1) {
+          border-bottom: 3px solid #9ea6b0;
+        }
+
+        p:nth-child(2) {
+          border-radius: 10px;
+        }
+      }
+    }
+
+    .timer-container {
+      width: 500px;
+      height: 20px;
+      background-color: #ddd;
+      overflow: hidden;
+      margin-top: 2rem;
+
+      .timer-bar {
+        width: 100%;
+        height: 100%;
+        background-color: #48525d;
+        transition: width 1s linear;
+      }
+    }
+
+    .boxColor {
+      width: 500px;
+      height: 400px;
+      background-color: #feeed8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .start {
+        width: 12rem;
+        height: 3rem;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        color: #e9ebec;
+        background-color: #48525d;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .active {
+        display: none;
+      }
+    }
+
+    .boxRandomColors {
+      width: 500px;
+      display: flex;
+      text-align: center;
+      margin-top: 2rem;
+      border-radius: 10px;
+      border: 3px solid #9ea6b0;
+
+      li {
+        width: 100%;
+        color: #48525d;
+        border-right: 3px solid #9ea6b0;
+        padding: 1rem 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      li:nth-child(3) {
+        border-right: none;
+      }
+    }
+  }
 }

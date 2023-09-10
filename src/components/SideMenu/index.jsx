@@ -6,12 +6,10 @@ import "./styles.scss";
 import { GameContext } from "../../contexts/gameContext";
 
 const SideMenu = () => {
-  const { colors, secondsChoose } = useContext(GameContext);
-
-  console.log(secondsChoose);
+  const { colors } = useContext(GameContext);
 
   return (
-    <div className="containerr">
+    <div className="containerSideMenu">
       <span className="title">Current/Lastest game</span>
       <div className="boxSubTitles">
         <p>

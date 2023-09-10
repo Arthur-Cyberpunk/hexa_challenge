@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from "react";
+import { GameContext } from "../../contexts/gameContext";
+import LocalStorage from "../../hooks/localStorage";
 import SideMenu from "../SideMenu";
 import "./styles.scss";
-
-import { GameContext } from "../../contexts/gameContext";
 
 const ModalGame = () => {
   const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(15);
-  const [timeLeft, setTimeLeft] = useState(10); // Tempo inicial em segundos
-  const totalTime = 10; // Tempo total em segundos
+  const [secondsLeft, setSecondsLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(9);
+  const totalTime = 9;
   const progress = (timeLeft / totalTime) * 100;
+  const [highScore, setHighScore] = LocalStorage("high_score");
 
   const { colorTime, active, setActive, setSecondsChoose, setColors } =
     useContext(GameContext);
@@ -28,8 +28,8 @@ const ModalGame = () => {
 
   const startGame = () => {
     if (secondsLeft === 0) {
-        setColors([])
-      setSecondsLeft(15);
+      setColors([]);
+      setSecondsLeft(30);
     }
 
     const correctColor = generateRandomColor();
@@ -40,15 +40,12 @@ const ModalGame = () => {
     randomOptions.sort(() => Math.random() - 0.5);
 
     setCurrentColor(correctColor);
-    //setSecondsChoose(10 - timeLeft);
     setOptions(randomOptions);
     setActive(true);
-
   };
 
   const checkAnswer = (selectedColor) => {
     setTimeLeft(totalTime);
-    //setSecondsChoose(( prevCount ) => prevCount + (10 - timeLeft))
 
     colorTime(selectedColor, currentColor, active);
 
@@ -57,10 +54,24 @@ const ModalGame = () => {
     } else if (selectedColor === undefined) {
       setScore(score - 2);
     } else {
-      setScore(score - 1);
+      setScore(score + 1);
     }
 
     startGame();
+  };
+
+  const restartGame = () => {
+    if (active) {
+      setCurrentColor("");
+      setOptions([]);
+      setScore(0);
+      setSecondsLeft(30);
+      startGame();
+      setActive(true);
+      setTimeLeft(totalTime);
+      setColors([]);
+      setSecondsChoose(0);
+    }
   };
 
   useEffect(() => {
@@ -68,7 +79,6 @@ const ModalGame = () => {
     if (secondsLeft > 0 && active) {
       seconds = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1);
-        //setSecondsChoose(+ 1)
       }, 1000);
     } else if (secondsLeft === 0) {
       setCurrentColor("");
@@ -76,7 +86,7 @@ const ModalGame = () => {
       setScore(0);
       setActive(false);
       setTimeLeft(totalTime);
-      setSecondsChoose(0)
+      setSecondsChoose(0);
 
       if (highScore < score) {
         setHighScore(score);
@@ -86,51 +96,23 @@ const ModalGame = () => {
     return () => clearTimeout(seconds);
   }, [secondsLeft, active]);
 
-  const restartGame = () => {
-    setCurrentColor("");
-    setOptions([]);
-    setScore(0);
-    setSecondsLeft(30);
-    startGame();
-    setActive(true);
-    setTimeLeft(totalTime);
-    setColors([])
-    setSecondsChoose(0)
-  };
-
-  useEffect(() => {
-    const masterScore = localStorage.getItem("high_score");
-
-    if (masterScore !== null) {
-      setHighScore(masterScore);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (highScore > 0) {
-      localStorage.setItem("high_score", `${highScore}`);
-    }
-  }, [highScore]);
-
   useEffect(() => {
     if (active) {
       const timer = setInterval(() => {
         if (timeLeft > 0) {
           setTimeLeft(timeLeft - 1);
-
         } else {
-          // Quando o tempo atinge zero, reinicie instantaneamente
           setTimeLeft(totalTime);
           checkAnswer();
         }
       }, 1000);
-      
-      setSecondsChoose(10 - timeLeft)
+
+      setSecondsChoose(10 - timeLeft);
       return () => {
-        clearInterval(timer); // Limpa o temporizador quando o componente é desmontado
+        clearInterval(timer);
       };
     }
-  }, [active, timeLeft, totalTime]);
+  }, [active, timeLeft]);
 
   return (
     <div className="container">
@@ -143,6 +125,7 @@ const ModalGame = () => {
           </p>
           <span
             className={`restartGame ${active ? "active" : ""}`}
+            style={{ cursor: !active ? "not-allowed" : "pointer" }}
             onClick={restartGame}
           >
             Restart

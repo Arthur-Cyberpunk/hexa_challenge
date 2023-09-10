@@ -31,7 +31,6 @@ const GameProvider = ({ children }) => {
         colors,
         active,
         setActive,
-        secondsChoose,
         setSecondsChoose,
         setColors,
       }}
