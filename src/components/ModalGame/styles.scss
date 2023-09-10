@@ -77,16 +77,17 @@
         }
 
         .timer-container {
-            height: 30px;
             width: 500px;
-            background: #555;
+            height: 20px;
+            background-color: #ddd;
+            overflow: hidden;
             margin-top: 2rem;
 
             .timer-bar {
+                width: 100%;
                 height: 100%;
-                width: 0px;
-                background-color: rgb(43, 194, 83);
-                transition: all 700ms ease;
+                background-color: #48525D;
+                transition: width 1s linear;
             }
         }
 

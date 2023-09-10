@@ -38,34 +38,38 @@
 
     .boxInfo {
         width: 100%;
-        display: flex;
-        gap: 2rem;
-        padding: 1.4rem 1rem;
         background-color: #DBDFE6;
+        
 
-        .color {
-            width: 150px;
-            height: 50px;
-            border-radius: 4px;
+        .answers {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: red;
+            gap: 2rem;
+            padding: 1.4rem 1rem;
+            border-bottom: 3px solid #9EA6B0;
 
-            .hexaColor {
-                font-size: 0.8rem;
-                text-transform: uppercase;
+            .color {
+                width: 150px;
+                height: 50px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    
+                .hexaColor {
+                    font-size: 0.8rem;
+                    text-transform: uppercase;
+                }
+    
             }
-
-        }
-
-        .seconds {
-            width: 100px;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-weight: 600;
-            color: #48525D;
+    
+            .seconds {
+                width: 100px;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-weight: 600;
+                color: #48525D;
+            }
         }
     }
 }
