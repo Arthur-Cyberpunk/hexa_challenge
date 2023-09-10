@@ -8,11 +8,23 @@ const GameProvider = ({ children }) => {
   const [secondsChoose, setSecondsChoose] = useState(0);
 
   const colorTime = (selectedColor, currentColor) => {
-    if (selectedColor !== undefined) {
-      const novarCor = { selectedColor, secondsChoose };
+    if (selectedColor !== undefined && selectedColor === currentColor) {
+      const novarCor = {
+        selectedColor,
+        secondsChoose,
+      };
+      setColors((prevDados) => [novarCor, ...prevDados]);
+    } else if (selectedColor !== undefined && selectedColor !== currentColor) {
+      const novarCor = {
+        selectedColor,
+        currentColor,
+        secondsChoose,
+      };
       setColors((prevDados) => [novarCor, ...prevDados]);
     }
   };
+
+  console.log(colors);
 
   return (
     <GameContext.Provider

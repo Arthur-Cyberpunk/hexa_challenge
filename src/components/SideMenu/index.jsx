@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import SVGCheck from "../../icons/SVGCheck";
+import SVGWrong from "../../icons/SVGWrong";
 import "./styles.scss";
 
 import { GameContext } from "../../contexts/gameContext";
 
 const SideMenu = () => {
-  const { colors } = useContext(GameContext);
+  const { colors, wrongColor } = useContext(GameContext);
 
-  console.log(colors)
+  console.log(colors);
 
   return (
     <div className="containerr">
@@ -21,24 +22,36 @@ const SideMenu = () => {
         </p>
         <p>Score</p>
       </div>
-      
-        <div className="boxInfo">
-          {colors.map((color, index) => {
-            return (
-              <div className="answers">
-                <div className="color" style={{ backgroundColor: `${color.selectedColor}` }}>
-                  <p key={index} className="hexaColor" >
-                    {color.selectedColor}
-                  </p>
-                </div>
-                <span className="seconds">
-                  <SVGCheck />
-                  {color.secondsChoose}
-                </span>
+
+      <div className="boxInfo">
+        {colors.map((color, index) => {
+          return (
+            <div className="answers">
+              <div
+                className="color"
+                style={{ backgroundColor: `${color.selectedColor}` }}
+              >
+                <p key={index} className="hexaColor">
+                  {color.selectedColor}
+                </p>
               </div>
-            );
-          })}
-        </div>
+              <div
+                className={`color ${color.currentColor ? "" : "active"}`}
+                style={{ backgroundColor: `${color.currentColor}` }}
+              >
+                <p key={index} className="hexaColor">
+                  {color.currentColor ? color.currentColor : ""}
+                </p>
+              </div>
+              <span className="seconds">
+                {color.currentColor ? <SVGWrong /> : <SVGCheck />}
+
+                {color.secondsChoose}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

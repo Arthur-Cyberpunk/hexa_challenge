@@ -14,7 +14,7 @@ const ModalGame = () => {
   const totalTime = 10; // Tempo total em segundos
   const progress = (timeLeft / totalTime) * 100;
 
-  const { colorTime, active, setActive, secondsChoose, setSecondsChoose, setColors } =
+  const { colorTime, active, setActive, secondsChoose, setSecondsChoose, setColors, setWrongColor } =
     useContext(GameContext);
 
   const generateRandomColor = () => {
@@ -28,6 +28,7 @@ const ModalGame = () => {
 
   const startGame = () => {
     if (secondsLeft === 0) {
+        setColors([])
       setSecondsLeft(3);
     }
 
@@ -56,7 +57,7 @@ const ModalGame = () => {
       setScore(score - 2);
       setTimeLeft(9);
     } else {
-      setScore(score + 1);
+      setScore(score - 1);
       setTimeLeft(totalTime);
     }
 
