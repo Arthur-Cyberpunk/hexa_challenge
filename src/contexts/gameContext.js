@@ -24,8 +24,6 @@ const GameProvider = ({ children }) => {
     }
   };
 
-  console.log(colors);
-
   return (
     <GameContext.Provider
       value={{

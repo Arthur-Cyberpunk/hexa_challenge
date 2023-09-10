@@ -6,9 +6,9 @@ import "./styles.scss";
 import { GameContext } from "../../contexts/gameContext";
 
 const SideMenu = () => {
-  const { colors, wrongColor } = useContext(GameContext);
+  const { colors, secondsChoose } = useContext(GameContext);
 
-  console.log(colors);
+  console.log(secondsChoose);
 
   return (
     <div className="containerr">
@@ -22,7 +22,6 @@ const SideMenu = () => {
         </p>
         <p>Score</p>
       </div>
-
       <div className="boxInfo">
         {colors.map((color, index) => {
           return (
@@ -45,8 +44,7 @@ const SideMenu = () => {
               </div>
               <span className="seconds">
                 {color.currentColor ? <SVGWrong /> : <SVGCheck />}
-
-                {color.secondsChoose}
+                {color.secondsChoose}s
               </span>
             </div>
           );

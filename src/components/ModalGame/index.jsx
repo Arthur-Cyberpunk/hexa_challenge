@@ -9,12 +9,12 @@ const ModalGame = () => {
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(3);
+  const [secondsLeft, setSecondsLeft] = useState(15);
   const [timeLeft, setTimeLeft] = useState(10); // Tempo inicial em segundos
   const totalTime = 10; // Tempo total em segundos
   const progress = (timeLeft / totalTime) * 100;
 
-  const { colorTime, active, setActive, secondsChoose, setSecondsChoose, setColors, setWrongColor } =
+  const { colorTime, active, setActive, setSecondsChoose, setColors } =
     useContext(GameContext);
 
   const generateRandomColor = () => {
@@ -29,7 +29,7 @@ const ModalGame = () => {
   const startGame = () => {
     if (secondsLeft === 0) {
         setColors([])
-      setSecondsLeft(3);
+      setSecondsLeft(15);
     }
 
     const correctColor = generateRandomColor();
@@ -43,22 +43,21 @@ const ModalGame = () => {
     //setSecondsChoose(10 - timeLeft);
     setOptions(randomOptions);
     setActive(true);
+
   };
 
   const checkAnswer = (selectedColor) => {
-    //setSecondsChoose(10 - timeLeft)
+    setTimeLeft(totalTime);
+    //setSecondsChoose(( prevCount ) => prevCount + (10 - timeLeft))
 
     colorTime(selectedColor, currentColor, active);
 
     if (selectedColor === currentColor) {
       setScore(score + 5);
-      setTimeLeft(totalTime);
     } else if (selectedColor === undefined) {
       setScore(score - 2);
-      setTimeLeft(9);
     } else {
       setScore(score - 1);
-      setTimeLeft(totalTime);
     }
 
     startGame();
@@ -69,6 +68,7 @@ const ModalGame = () => {
     if (secondsLeft > 0 && active) {
       seconds = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1);
+        //setSecondsChoose(+ 1)
       }, 1000);
     } else if (secondsLeft === 0) {
       setCurrentColor("");
@@ -76,6 +76,7 @@ const ModalGame = () => {
       setScore(0);
       setActive(false);
       setTimeLeft(totalTime);
+      setSecondsChoose(0)
 
       if (highScore < score) {
         setHighScore(score);
@@ -94,6 +95,7 @@ const ModalGame = () => {
     setActive(true);
     setTimeLeft(totalTime);
     setColors([])
+    setSecondsChoose(0)
   };
 
   useEffect(() => {
@@ -115,12 +117,15 @@ const ModalGame = () => {
       const timer = setInterval(() => {
         if (timeLeft > 0) {
           setTimeLeft(timeLeft - 1);
+
         } else {
           // Quando o tempo atinge zero, reinicie instantaneamente
           setTimeLeft(totalTime);
           checkAnswer();
         }
       }, 1000);
+      
+      setSecondsChoose(10 - timeLeft)
       return () => {
         clearInterval(timer); // Limpa o temporizador quando o componente é desmontado
       };
