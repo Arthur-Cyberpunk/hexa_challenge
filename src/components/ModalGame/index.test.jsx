@@ -3,7 +3,7 @@ import React from 'react';
 import ModalGame from '.';
 
 describe('ModalGame', () => {
-  it('deve renderizar corretamente', () => {
+  it('should render the texts', () => {
     render(<ModalGame />);
     
     expect(screen.getByText('Guess the color')).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('ModalGame', () => {
   expect(startButton).toBeInTheDocument()
   });
 
-  it('Clique no botão "Start" inicia o jogo', () => {
+  it('should call function on button click', () => {
     const fn = jest.fn()
     render(<ModalGame text='Start' onClick={fn} />);
   
