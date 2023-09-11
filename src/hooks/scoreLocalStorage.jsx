@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GameContext } from "../contexts/gameContext";
 
 const ScoreLocalStorage = (key) => {
+  const { secondsLeft } = useContext(GameContext);
+
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
 
@@ -8,10 +11,10 @@ const ScoreLocalStorage = (key) => {
   });
 
   useEffect(() => {
-    if (value > 0) {
+    if (value > 0 && secondsLeft === 0) {
       localStorage.setItem("high_score", `${value}`);
     }
-  }, [value]);
+  }, [secondsLeft, value]);
 
   return [value, setValue];
 };

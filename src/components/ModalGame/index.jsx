@@ -8,14 +8,13 @@ const ModalGame = () => {
   const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(4);
   const [timeLeft, setTimeLeft] = useState(10);
   const totalTime = 10;
   const progress = (timeLeft / totalTime) * 100;
 
   const [highScore, setHighScore] = ScoreLocalStorage("high_score");
 
-  const { colorTime, active, setActive, setSecondsChoose, setColors } =
+  const { colorTime, active, setActive, setSecondsChoose, setColors, secondsLeft, setSecondsLeft } =
     useContext(GameContext);
 
   const generateRandomColor = () => {
@@ -48,7 +47,7 @@ const ModalGame = () => {
   const checkAnswer = (selectedColor) => {
     setTimeLeft(totalTime);
 
-    colorTime(selectedColor, currentColor, highScore);
+    colorTime(selectedColor, currentColor);
 
     if (selectedColor === currentColor) {
       setScore(score + 5);

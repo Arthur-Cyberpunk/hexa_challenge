@@ -6,6 +6,7 @@ const GameProvider = ({ children }) => {
   const [colors, setColors] = useState([]);
   const [active, setActive] = useState(false);
   const [secondsChoose, setSecondsChoose] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(4);
 
   const colorTime = (selectedColor, currentColor) => {
     if (selectedColor !== undefined && selectedColor === currentColor) {
@@ -33,6 +34,8 @@ const GameProvider = ({ children }) => {
         setActive,
         setSecondsChoose,
         setColors,
+        secondsLeft,
+        setSecondsLeft,
       }}
     >
       {children}

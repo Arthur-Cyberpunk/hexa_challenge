@@ -12,16 +12,9 @@ const SideMenu = () => {
   const [color, setColor] = ColorHistoryLocalStorage("colorAndTime");
 
   useEffect(() => {
-    if (active) setColor(colors);
+    if (active) 
+    setColor(colors);
   }, [colors, setColor]);
-
-  useEffect(() => {
-    const shouldClearLocalStorage = true;
-
-    if (shouldClearLocalStorage && !active) {
-      localStorage.clear();
-    }
-  }, [active]);
 
   return (
     <div className="containerSideMenu">

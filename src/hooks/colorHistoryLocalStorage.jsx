@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../contexts/gameContext";
 
 const ColorHistoryLocalStorage = (key) => {
-  const { active } = useContext(GameContext);
+  const { active, secondsLeft } = useContext(GameContext);
 
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
@@ -12,10 +12,10 @@ const ColorHistoryLocalStorage = (key) => {
   });
 
   useEffect(() => {
-    if (active) {
+    if (active && secondsLeft === 0) {
       localStorage.setItem("colorAndTime", JSON.stringify(value));
     }
-  }, [active, value]);
+  }, [active, secondsLeft]);
 
   return [value, setValue];
 };
