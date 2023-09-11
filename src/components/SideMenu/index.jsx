@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import HistoricColorLocalStorage from '../../hooks/historicColorLocalStorage';
+import ColorHistoryLocalStorage from "../../hooks/colorHistoryLocalStorage";
 import SVGCheck from "../../icons/SVGCheck";
 import SVGWrong from "../../icons/SVGWrong";
 import "./styles.scss";
@@ -9,14 +9,19 @@ import { GameContext } from "../../contexts/gameContext";
 const SideMenu = () => {
   const { colors, active } = useContext(GameContext);
 
-  const [color, setColor] = HistoricColorLocalStorage("colorAndTime");
+  const [color, setColor] = ColorHistoryLocalStorage("colorAndTime");
 
-  useEffect (() => {
-    if (active)
-    setColor(colors)
-  }, [colors, setColor])
+  useEffect(() => {
+    if (active) setColor(colors);
+  }, [colors, setColor]);
 
-  console.log(color)
+  useEffect(() => {
+    const shouldClearLocalStorage = true;
+
+    if (shouldClearLocalStorage && !active) {
+      localStorage.clear();
+    }
+  }, [active]);
 
   return (
     <div className="containerSideMenu">
@@ -31,38 +36,37 @@ const SideMenu = () => {
         <p>Score</p>
       </div>
       {color ? (
-              <div className="boxInfo">
-              {color.map((colors, index) => {
-                return (
-                  <div className="answers">
-                    <div
-                      className="color"
-                      style={{ backgroundColor: `${colors.selectedColor}` }}
-                    >
-                      <p key={index} className="hexaColor">
-                        {colors.selectedColor}
-                      </p>
-                    </div>
-                    <div
-                      className={`color ${colors.currentColor ? "" : "active"}`}
-                      style={{ backgroundColor: `${colors.currentColor}` }}
-                    >
-                      <p key={index} className="hexaColor">
-                        {colors.currentColor ? colors.currentColor : ""}
-                      </p>
-                    </div>
-                    <span className="seconds">
-                      {colors.currentColor ? <SVGWrong /> : <SVGCheck />}
-                      {colors.secondsChoose}s
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+        <div className="boxInfo">
+          {color.map((colors, index) => {
+            return (
+              <div className="answers">
+                <div
+                  className="color"
+                  style={{ backgroundColor: `${colors.selectedColor}` }}
+                >
+                  <p key={index} className="hexaColor">
+                    {colors.selectedColor}
+                  </p>
+                </div>
+                <div
+                  className={`color ${colors.currentColor ? "" : "active"}`}
+                  style={{ backgroundColor: `${colors.currentColor}` }}
+                >
+                  <p key={index} className="hexaColor">
+                    {colors.currentColor ? colors.currentColor : ""}
+                  </p>
+                </div>
+                <span className="seconds">
+                  {colors.currentColor ? <SVGWrong /> : <SVGCheck />}
+                  {colors.secondsChoose}s
+                </span>
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <></>
       )}
-
     </div>
   );
 };

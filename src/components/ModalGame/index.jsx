@@ -8,13 +8,12 @@ const ModalGame = () => {
   const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(2);
+  const [secondsLeft, setSecondsLeft] = useState(4);
   const [timeLeft, setTimeLeft] = useState(10);
   const totalTime = 10;
   const progress = (timeLeft / totalTime) * 100;
-  
+
   const [highScore, setHighScore] = ScoreLocalStorage("high_score");
-  const [, , clearLocalStorage] = ScoreLocalStorage('high_score', null);
 
   const { colorTime, active, setActive, setSecondsChoose, setColors } =
     useContext(GameContext);
@@ -31,7 +30,7 @@ const ModalGame = () => {
   const startGame = () => {
     if (secondsLeft === 0) {
       setColors([]);
-      setSecondsLeft(2)
+      setSecondsLeft(4);
     }
 
     const correctColor = generateRandomColor();
@@ -49,7 +48,7 @@ const ModalGame = () => {
   const checkAnswer = (selectedColor) => {
     setTimeLeft(totalTime);
 
-    colorTime(selectedColor, currentColor, active);
+    colorTime(selectedColor, currentColor, highScore);
 
     if (selectedColor === currentColor) {
       setScore(score + 5);
@@ -68,11 +67,11 @@ const ModalGame = () => {
     setScore(0);
     setTimeLeft(totalTime);
     setSecondsChoose(0);
-  }
+  };
 
   const restartGame = () => {
     if (active) {
-      resetGame()
+      resetGame();
       setColors([]);
       startGame();
       setActive(true);
@@ -80,16 +79,11 @@ const ModalGame = () => {
   };
 
   const handleCleanLocalStorage = () => {
-    clearLocalStorage();
-    resetGame()
+    localStorage.clear();
+    resetGame();
     setColors([]);
-    setHighScore('');
+    setHighScore("");
   };
-
-  useEffect (()=> {
-    if (active === false)
-    setColors([])
-  }, [active, setColors])
 
   useEffect(() => {
     let seconds;
@@ -98,7 +92,7 @@ const ModalGame = () => {
         setSecondsLeft(secondsLeft - 1);
       }, 1000);
     } else if (secondsLeft === 0) {
-      resetGame()
+      resetGame();
       setActive(false);
 
       if (highScore < score) {

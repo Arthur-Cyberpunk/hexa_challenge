@@ -1,9 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { GameContext } from "../contexts/gameContext";
+import { useEffect, useState } from "react";
 
-const ScoreLocalStorage = (key, initialValue) => {
-  const { setColors } = useContext(GameContext);
-
+const ScoreLocalStorage = (key) => {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
 
@@ -16,13 +13,7 @@ const ScoreLocalStorage = (key, initialValue) => {
     }
   }, [value]);
 
-  const clearLocalStorage = () => {
-    setColors([]);
-    localStorage.clear();
-    setValue(initialValue);
-  };
-
-  return [value, setValue, clearLocalStorage];
+  return [value, setValue];
 };
 
 export default ScoreLocalStorage;

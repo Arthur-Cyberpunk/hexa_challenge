@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../contexts/gameContext";
 
-const HistoricColorLocalStorage = (key) => {
-    const { active } = useContext(GameContext);
+const ColorHistoryLocalStorage = (key) => {
+  const { active } = useContext(GameContext);
 
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
+    const colorHistory = JSON.parse(storedValue);
 
-    const meuArray = JSON.parse(storedValue)
-
-    return meuArray;
+    return colorHistory;
   });
 
   useEffect(() => {
@@ -18,11 +17,7 @@ const HistoricColorLocalStorage = (key) => {
     }
   }, [active, value]);
 
-  console.log(value)
-
   return [value, setValue];
-
-
 };
 
-export default HistoricColorLocalStorage;
+export default ColorHistoryLocalStorage;
