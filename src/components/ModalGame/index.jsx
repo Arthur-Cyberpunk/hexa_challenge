@@ -5,8 +5,6 @@ import SideMenu from "../SideMenu";
 import "./styles.scss";
 
 const ModalGame = () => {
-  const [currentColor, setCurrentColor] = useState("");
-  const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
   const totalTime = 10;
@@ -14,35 +12,22 @@ const ModalGame = () => {
 
   const [highScore, setHighScore] = ScoreLocalStorage("high_score");
 
-  const { colorTime, active, setActive, setSecondsChoose, setColors, secondsLeft, setSecondsLeft } =
-    useContext(GameContext);
-
-  const generateRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-
-  const startGame = () => {
-    if (secondsLeft === 0) {
-      setColors([]);
-      setSecondsLeft(10);
-    }
-
-    const correctColor = generateRandomColor();
-    const randomColor1 = generateRandomColor();
-    const randomColor2 = generateRandomColor();
-
-    const randomOptions = [correctColor, randomColor1, randomColor2];
-    randomOptions.sort(() => Math.random() - 0.5);
-
-    setCurrentColor(correctColor);
-    setOptions(randomOptions);
-    setActive(true);
-  };
+  const {
+    colorTime,
+    active,
+    setActive,
+    setSecondsChoose,
+    setColors,
+    secondsLeft,
+    setSecondsLeft,
+    currentColor,
+    setCurrentColor,
+    options,
+    setOptions,
+    startGame,
+    chooseDifficulty,
+    nickName,
+  } = useContext(GameContext);
 
   const checkAnswer = (selectedColor) => {
     setTimeLeft(totalTime);
@@ -76,6 +61,7 @@ const ModalGame = () => {
       setColors([]);
       startGame();
       setActive(true);
+      setSecondsLeft(10)
     }
   };
 
@@ -95,12 +81,14 @@ const ModalGame = () => {
     } else if (secondsLeft <= 0) {
       resetGame();
       setActive(false);
-      setSecondsLeft(0)
+      setSecondsLeft(0);
 
       if (highScore < score) {
-        setHighScore(score);
+        setHighScore([score, nickName]);
       }
     }
+
+    console.log(highScore)
 
     return () => clearTimeout(seconds);
   }, [secondsLeft, active]);
@@ -158,7 +146,8 @@ const ModalGame = () => {
         {active ? (
           <div className="boxRandomColors">
             {options.map((hexaColor, index) => (
-              <li key={index} onClick={() => checkAnswer(hexaColor)}>
+              <li className={`${chooseDifficulty === 'easy' ? "active" : chooseDifficulty === 'medium' ? "active2" : 'active3'}`} 
+              key={index} onClick={() => checkAnswer(hexaColor)}>
                 {hexaColor}
               </li>
             ))}

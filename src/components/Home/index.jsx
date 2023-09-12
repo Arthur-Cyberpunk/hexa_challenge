@@ -11,7 +11,7 @@ import "./styles.scss";
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { chooseDifficulty, setChooseDifficulty } = useContext(GameContext);
+  const { chooseDifficulty, setChooseDifficulty, nickName, setNickName } = useContext(GameContext);
 
   const difficultyChosen = (props) => {
     setChooseDifficulty(props);
@@ -25,7 +25,7 @@ const Home = () => {
           Welcome to <br /> Hexa Challenge
         </h1>
       </div>
-      <Link to="/">
+      <Link to="/game">
         <button className="startButton">Start</button>
       </Link>
       <div className="options">
@@ -36,6 +36,9 @@ const Home = () => {
           name="nickName"
           id="nickName"
           placeholder="Enter your nickname"
+          maxlength="10"
+          value={nickName}
+          onChange={(e) => setNickName(e.target.value)}
         />
         <div className="difficulty">
           <span className="titleLevels">Choose your difficult level</span>

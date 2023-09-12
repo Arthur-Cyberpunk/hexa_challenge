@@ -6,13 +6,16 @@ const ScoreLocalStorage = (key) => {
 
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
+    const highScore = JSON.parse(storedValue);
 
-    return storedValue;
+    return highScore;
   });
 
+  console.log(value)
+
   useEffect(() => {
-    if (value > 0 && secondsLeft === 0) {
-      localStorage.setItem("high_score", `${value}`);
+    if (value && secondsLeft === 0) {
+      localStorage.setItem("high_score", JSON.stringify(value));
     }
   }, [secondsLeft, value]);
 
