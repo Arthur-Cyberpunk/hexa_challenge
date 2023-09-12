@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import paletaColors from "../../assets/paletaColors.png";
 import shield from "../../assets/shield.png";
 import skull from "../../assets/skull.png";
 import sword from "../../assets/sword.png";
+import { GameContext } from '../../contexts/gameContext';
 import TutorialModal from '../TutorialModal';
 import "./styles.scss";
 
 const Home = () => {
     const [modalOpen, setModalOpen] = useState(false)
 
-    // const { setSecondsLeft } =
-    // useContext(GameContext);
+    const { colorTime } =
+    useContext(GameContext);
 
     //console.log(chooseDifficult)
 

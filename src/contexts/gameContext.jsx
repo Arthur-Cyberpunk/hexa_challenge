@@ -37,7 +37,7 @@ const GameProvider = ({ children }) => {
         setSecondsChoose,
         secondsLeft,
         setSecondsLeft,
-        //setChooseDifficult,
+        setChooseDifficult,
       }}
     >
       {children}
