@@ -31,6 +31,24 @@
     }
   }
 
+  .startButton {
+    width: 8rem;
+    height: 3rem;
+    font-size: 1.6rem;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    margin: 0 0 3rem;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .startButton:hover {
+    background-color: #2980b9;
+}
+
   .options {
     width: 300px;
     margin: 1rem auto;
@@ -82,7 +100,7 @@
           cursor: pointer;
         }
 
-        .iconsDaora {
+        .iconsDifficult {
           width: 3rem;
           margin-right: 6rem;
         }

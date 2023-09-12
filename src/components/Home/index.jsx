@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import paletaColors from "../../assets/paletaColors.png";
 import shield from "../../assets/shield.png";
 import skull from "../../assets/skull.png";
@@ -9,6 +10,11 @@ import "./styles.scss";
 const Home = () => {
     const [modalOpen, setModalOpen] = useState(false)
 
+    // const { setSecondsLeft } =
+    // useContext(GameContext);
+
+    //console.log(chooseDifficult)
+
   return (
     <div className="containerHome">
       <div className="boxTitleColors">
@@ -17,6 +23,9 @@ const Home = () => {
           Welcome to <br /> Hexa Challenge
         </h1>
       </div>
+      <Link to="game">
+        <button className="startButton">Start</button>
+      </Link>
       <div className="options">
         <label htmlFor="nickName">Nickname:</label>
         <input
@@ -29,16 +38,16 @@ const Home = () => {
         <div className="difficult">
           <span className="titleLevels">Choose your difficult level</span>
           <div className="boxOptions">
-            <p className="difficultLevel">Easy </p>{" "}
-            <img className="iconsDaora" src={shield} alt="" />
+            <p className="difficultLevel" >Easy </p>{" "}
+            <img className="iconsDifficult" src={shield} alt="" />
           </div>
           <div className="boxOptions">
-            <p className="difficultLevel">Normal</p>{" "}
-            <img className="iconsDaora" src={sword} alt="" />
+            <p className="difficultLevel" >Medium</p>{" "}
+            <img className="iconsDifficult" src={sword} alt="" />
           </div>
           <div className="boxOptions">
-            <p className="difficultLevel">Hard</p>{" "}
-            <img className="iconsDaora" src={skull} alt="" />
+            <p className="difficultLevel" >Hard</p>{" "}
+            <img className="iconsDifficult" src={skull} alt="" />
           </div>
         </div>
         <p className="tutorial" onClick={() => setModalOpen(true)}>Tutorial</p>

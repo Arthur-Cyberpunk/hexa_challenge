@@ -34,8 +34,8 @@ const TutorialModal = (props) => {
       <div>
         <span>Difficulty</span>
         <p>
-          There are three difficulties: <br /> <br /> - Easy - 3 color options.{" "}
-          <br /> - Normal - 4 color options. <br /> - Hard - 5 color
+          There are three difficulties: <br /> <br /> - Easy - 3 colors options.{" "}
+          <br /> - Normal - 4 colors options. <br /> - Hard - 5 colors
           options.
         </p>
       </div>
