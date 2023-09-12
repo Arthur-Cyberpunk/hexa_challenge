@@ -1,16 +1,16 @@
 import '@testing-library/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import ModalGame from '.';
+import ModalGame, { startGame } from '.';
 import GameProvider from '../../contexts/gameContext';
 
+jest.mock('.');
+
 const setActive = jest.fn();
-const startGame = jest.fn();
-const restart = jest.fn();
 
 const renderComponent = ()=> {
     return render(
-        <GameProvider value={{setActive, startGame, restart}}>
+        <GameProvider value={{setActive}}>
             <ModalGame />
         </GameProvider>
     )
@@ -41,7 +41,8 @@ describe('ModalGame', () => {
   
     const { getByText } = renderComponent(<ModalGame onClick={startGame} />);
 
-    const botao = screen.getByText('Start'); // Encontre o botão pelo texto ou por algum outro seletor
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    const botao = getByText('Start'); // Encontre o botão pelo texto ou por algum outro seletor
     fireEvent.click(botao)
 
     console.log(startGame)

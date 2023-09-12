@@ -22,7 +22,7 @@
         transform: rotate(0deg);
       }
       to {
-        transform: rotate(360deg)
+        transform: rotate(360deg);
       }
     }
 
@@ -47,7 +47,7 @@
 
   .startButton:hover {
     background-color: #2980b9;
-}
+  }
 
   .options {
     width: 300px;
@@ -79,7 +79,7 @@
       box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
     }
 
-    .difficult {
+    .difficulty {
       width: 100%;
       font-size: 1.4rem;
       color: #333;
@@ -94,13 +94,13 @@
         justify-content: space-between;
         align-items: center;
 
-        .difficultLevel {
-          background-color: #fff;
+        .difficultyLevel {
           color: #333;
           cursor: pointer;
+          margin-top: 1.4rem;
         }
 
-        .iconsDifficult {
+        .iconsDifficulty {
           width: 3rem;
           margin-right: 6rem;
         }
@@ -108,9 +108,9 @@
     }
 
     .tutorial {
-        font-size: 1.4rem;
-        font-weight: bold;
-        cursor: pointer;
+      font-size: 1.4rem;
+      font-weight: bold;
+      cursor: pointer;
     }
   }
 }

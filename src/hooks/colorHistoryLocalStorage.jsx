@@ -12,7 +12,7 @@ const ColorHistoryLocalStorage = (key) => {
   });
 
   useEffect(() => {
-    if (active && secondsLeft < 0) {
+    if (active && secondsLeft <= 0) {
       localStorage.setItem("colorAndTime", JSON.stringify(value));
     }
   }, [active, secondsLeft]);
