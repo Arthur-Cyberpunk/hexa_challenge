@@ -36,12 +36,12 @@ describe('ModalGame', () => {
   });
 
   it('should call function on button click', () => {
-    const startGame = jest.fn();
+    //const startGame = jest.fn();
     //render(<ModalGame startGame={startGame}  />)
   
-    const { getByText } = render(<ModalGame onClick={startGame} />);
+    const { getByText } = renderComponent(<ModalGame onClick={startGame} />);
 
-    const botao = getByText('Start'); // Encontre o botão pelo texto ou por algum outro seletor
+    const botao = screen.getByText('Start'); // Encontre o botão pelo texto ou por algum outro seletor
     fireEvent.click(botao)
 
     console.log(startGame)
