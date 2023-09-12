@@ -6,22 +6,22 @@ const GameProvider = ({ children }) => {
   const [colors, setColors] = useState([]);
   const [active, setActive] = useState(false);
   const [secondsChoose, setSecondsChoose] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(4);
+  const [secondsLeft, setSecondsLeft] = useState(10);
 
   const colorTime = (selectedColor, currentColor) => {
     if (selectedColor !== undefined && selectedColor === currentColor) {
-      const novarCor = {
+      const newColor = {
         selectedColor,
         secondsChoose,
       };
-      setColors((prevDados) => [novarCor, ...prevDados]);
+      setColors((prevDados) => [newColor, ...prevDados]);
     } else if (selectedColor !== undefined && selectedColor !== currentColor) {
-      const novarCor = {
+      const newColor = {
         selectedColor,
         currentColor,
         secondsChoose,
       };
-      setColors((prevDados) => [novarCor, ...prevDados]);
+      setColors((prevDados) => [newColor, ...prevDados]);
     }
   };
 
@@ -30,10 +30,10 @@ const GameProvider = ({ children }) => {
       value={{
         colorTime,
         colors,
+        setColors,
         active,
         setActive,
         setSecondsChoose,
-        setColors,
         secondsLeft,
         setSecondsLeft,
       }}

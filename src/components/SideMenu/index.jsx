@@ -7,12 +7,12 @@ import "./styles.scss";
 import { GameContext } from "../../contexts/gameContext";
 
 const SideMenu = () => {
-  const { colors, active } = useContext(GameContext);
+  const { colors, active, secondsLeft } = useContext(GameContext);
 
   const [color, setColor] = ColorHistoryLocalStorage("colorAndTime");
 
   useEffect(() => {
-    if (active) 
+    if (active && secondsLeft >= 0) 
     setColor(colors);
   }, [colors, setColor]);
 

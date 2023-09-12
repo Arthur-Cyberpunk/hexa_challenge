@@ -1,13 +1,12 @@
-import ModalGame from "../src/components/ModalGame";
+import Home from "../src/components/Home";
 import "./styles/globals.scss";
-
-import GameProvider from "./contexts/gameContext";
 
 function App() {
   return (
-    <GameProvider>
-      <ModalGame></ModalGame>
-    </GameProvider>
+    // <GameProvider>
+    //   <ModalGame></ModalGame>
+    // </GameProvider>
+    <Home></Home>
   );
 }
 

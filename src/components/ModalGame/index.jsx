@@ -29,7 +29,7 @@ const ModalGame = () => {
   const startGame = () => {
     if (secondsLeft === 0) {
       setColors([]);
-      setSecondsLeft(4);
+      setSecondsLeft(10);
     }
 
     const correctColor = generateRandomColor();
@@ -51,10 +51,12 @@ const ModalGame = () => {
 
     if (selectedColor === currentColor) {
       setScore(score + 5);
+      setSecondsLeft(secondsLeft + 3);
     } else if (selectedColor === undefined) {
       setScore(score - 2);
     } else {
       setScore(score - 1);
+      setSecondsLeft(secondsLeft - 3);
     }
 
     startGame();
@@ -90,9 +92,10 @@ const ModalGame = () => {
       seconds = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1);
       }, 1000);
-    } else if (secondsLeft === 0) {
+    } else if (secondsLeft <= 0) {
       resetGame();
       setActive(false);
+      setSecondsLeft(0)
 
       if (highScore < score) {
         setHighScore(score);

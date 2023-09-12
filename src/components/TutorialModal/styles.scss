@@ -1,0 +1,32 @@
+.containerTutorialModal {
+    position: fixed;
+    z-index: 999;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80vh;
+    border: 2px solid #777;
+    background-color: #000;
+    color: #fff;
+
+    div {
+        padding: 2rem;
+
+        span {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .iconX {
+            position: fixed;
+            right: 2rem;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 1rem;
+            padding-right: 4rem;
+            font-size: 1.2rem;
+        }
+    }
+}
