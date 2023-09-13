@@ -4,7 +4,7 @@
 
   <p>Um jogo especial, para pessoas especiais, sim, estamos falando de um jogo onde você tem que saber a cor somente pelo numero hexadecimal.</p>
 
-👉 Live Demo: <a href='https://irongames-rho.vercel.app/'>Live Demo</a>
+👉 Live Demo: <a href='https://hexa-challenge.vercel.app/' target="_blank">Live Demo</a>
 
 <h2>Sobre o projeto</h2>
 
