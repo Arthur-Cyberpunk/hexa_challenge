@@ -46,7 +46,7 @@ const GameProvider = ({ children }) => {
       setSecondsLeft(5);
     }
 
-    if (difficulty === "easy") {
+    if (difficulty === "easy" || chooseDifficulty === "easy") {
       const correctColor = generateRandomColor();
       const randomColor1 = generateRandomColor();
       const randomColor2 = generateRandomColor();
@@ -56,7 +56,7 @@ const GameProvider = ({ children }) => {
 
       setCurrentColor(correctColor);
       setOptions(randomOptions);
-    } else if (difficulty === "medium") {
+    } else if (difficulty === "medium" || chooseDifficulty === "medium") {
       const correctColor = generateRandomColor();
       const randomColor1 = generateRandomColor();
       const randomColor2 = generateRandomColor();
@@ -72,7 +72,7 @@ const GameProvider = ({ children }) => {
 
       setCurrentColor(correctColor);
       setOptions(randomOptions);
-    } else if (difficulty === "hard") {
+    } else if (difficulty === "hard" || chooseDifficulty === "hard") {
       const correctColor = generateRandomColor();
       const randomColor1 = generateRandomColor();
       const randomColor2 = generateRandomColor();

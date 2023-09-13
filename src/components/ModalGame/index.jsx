@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { GameContext } from "../../contexts/gameContext";
 import NickNameLocalStorage from "../../store/nickNameLocalStorage";
 import ScoreLocalStorage from "../../store/scoreLocalStorage";
@@ -172,6 +173,11 @@ const ModalGame = () => {
         ) : (
           <></>
         )}
+      </div>
+      <div className="backHome">
+        <Link to='/' onClick={handleCleanLocalStorage}>
+        <p>Back to home</p>
+        </Link>
       </div>
       <div className="resetAllData">
         <p onClick={handleCleanLocalStorage}>Reset all data</p>

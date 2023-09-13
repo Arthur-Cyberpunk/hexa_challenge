@@ -12,10 +12,16 @@ import "./styles.scss";
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { nickName, setNickName } = useContext(GameContext);
+  const { nickName, setNickName, chooseDifficulty, setChooseDifficulty } =
+    useContext(GameContext);
 
   const [difficultyStorage, setDifficultyStorage] =
     DifficultyLocalStorage("difficulty");
+
+  const takeDifficuties = (props) => {
+    setChooseDifficulty(props);
+    setDifficultyStorage(props);
+  };
 
   return (
     <div className="containerHome">
@@ -25,7 +31,7 @@ const Home = () => {
           Welcome to <br /> Hexa Challenge
         </h1>
       </div>
-      <Link to="/game">
+      <Link to={chooseDifficulty ? '/game' : '#'}>
         <button className="startButton">Start</button>
       </Link>
       <div className="options">
@@ -43,39 +49,30 @@ const Home = () => {
         <div className="difficulty">
           <span className="titleLevels">Choose your difficult level</span>
           <div className="boxOptions">
-            <p
-              className="difficultyLevel"
-              onClick={() => setDifficultyStorage("easy")}
-            >
+            <p className="difficultyLevel" onClick={() => takeDifficuties("easy")}>
               Easy{" "}
             </p>{" "}
-            {difficultyStorage === "easy" ? (
+            {chooseDifficulty === "easy" ? (
               <img className="iconsDifficulty" src={shield} alt="" />
             ) : (
               <></>
             )}
           </div>
           <div className="boxOptions">
-            <p
-              className="difficultyLevel"
-              onClick={() => setDifficultyStorage("medium")}
-            >
+            <p className="difficultyLevel" onClick={() => takeDifficuties("medium")}>
               Medium
             </p>{" "}
-            {difficultyStorage === "medium" ? (
+            {chooseDifficulty === "medium" ? (
               <img className="iconsDifficulty" src={sword} alt="" />
             ) : (
               <></>
             )}
           </div>
           <div className="boxOptions">
-            <p
-              className="difficultyLevel"
-              onClick={() => setDifficultyStorage("hard")}
-            >
+            <p className="difficultyLevel" onClick={() => takeDifficuties("hard")}>
               Hard
             </p>{" "}
-            {difficultyStorage === "hard" ? (
+            {chooseDifficulty === "hard" ? (
               <img className="iconsDifficulty" src={skull} alt="" />
             ) : (
               <></>

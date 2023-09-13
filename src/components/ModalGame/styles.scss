@@ -153,6 +153,19 @@
     }
   }
 
+  .backHome {
+    position: absolute;
+    bottom: 2rem;
+    right: 14rem;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    cursor: pointer;
+
+    p {
+      color: #48525d;
+    }
+  }
+
   .resetAllData {
     position: absolute;
     bottom: 2rem;
