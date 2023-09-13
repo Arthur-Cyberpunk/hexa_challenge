@@ -38,8 +38,6 @@
 
 <p>Infezlimente os testes unitarios nao foram desenvolvidos, não possuo experiência no assunto, porém, mesmo assim tentei desenvolvê-lo, mas não obtive exito.</p>
 
-<img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/b818b57d-cf3a-4f1c-ae89-0ee27c17876b'/>
-
 <h2>Estruturas de pastas</h2>
 
 <p>- public/</p>
