@@ -9,7 +9,7 @@
     align-items: center;
     padding-top: 6rem;
     text-transform: uppercase;
-    transform: translate(100%);
+    transform: translate(80%);
 
     .title {
       font-size: 2.5rem;
@@ -56,7 +56,7 @@
       }
 
       .boxScore {
-        width: 100%;
+        width: 70%;
 
         .score {
           color: #48525d;
@@ -66,12 +66,18 @@
           border-radius: 0 10px 0 0;
         }
 
-        p:nth-child(1) {
+        p:nth-child(2) {
           border-bottom: 3px solid #9ea6b0;
         }
 
-        p:nth-child(2) {
+        p:nth-child(3) {
           border-radius: 10px;
+        }
+
+        .nickName{
+          color: #48525d;
+          padding: 0 1rem 1rem;
+          font-weight: 600;
         }
       }
     }

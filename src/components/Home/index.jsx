@@ -5,6 +5,7 @@ import shield from "../../assets/shield.png";
 import skull from "../../assets/skull.png";
 import sword from "../../assets/sword.png";
 import { GameContext } from "../../contexts/gameContext";
+import DifficultyLocalStorage from "..//../store/difficultyLocalStorage";
 import TutorialModal from "../TutorialModal";
 import "./styles.scss";
 
@@ -13,9 +14,18 @@ const Home = () => {
 
   const { chooseDifficulty, setChooseDifficulty, nickName, setNickName } = useContext(GameContext);
 
-  const difficultyChosen = (props) => {
-    setChooseDifficulty(props);
-  };
+  const [difficultyStorage, setDifficultyStorage] = DifficultyLocalStorage("difficulty");
+
+  // const difficultyChosen = (props) => {
+  //   setChooseDifficulty(props);
+  //   setOpenDifficulty(true)
+  // };
+
+  // useEffect (() => {
+  //   setDifficultyStorage(chooseDifficulty)
+  // }, [chooseDifficulty, setDifficultyStorage])
+
+  console.log(difficultyStorage)
 
   return (
     <div className="containerHome">
@@ -36,7 +46,7 @@ const Home = () => {
           name="nickName"
           id="nickName"
           placeholder="Enter your nickname"
-          maxlength="10"
+          maxlength="5"
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
         />
@@ -45,11 +55,11 @@ const Home = () => {
           <div className="boxOptions">
             <p
               className="difficultyLevel"
-              onClick={() => difficultyChosen("easy")}
+              onClick={() => setDifficultyStorage("easy")}
             >
               Easy{" "}
             </p>{" "}
-            {chooseDifficulty === "easy" ? (
+            {difficultyStorage === "easy" ? (
               <img className="iconsDifficulty" src={shield} alt="" />
             ) : (
               <></>
@@ -58,11 +68,11 @@ const Home = () => {
           <div className="boxOptions">
             <p
               className="difficultyLevel"
-              onClick={() => difficultyChosen("medium")}
+              onClick={() => setDifficultyStorage("medium")}
             >
               Medium
             </p>{" "}
-            {chooseDifficulty === "medium" ? (
+            {difficultyStorage === "medium" ? (
               <img className="iconsDifficulty" src={sword} alt="" />
             ) : (
               <></>
@@ -71,11 +81,11 @@ const Home = () => {
           <div className="boxOptions">
             <p
               className="difficultyLevel"
-              onClick={() => difficultyChosen("hard")}
+              onClick={() => setDifficultyStorage("hard")}
             >
               Hard
             </p>{" "}
-            {chooseDifficulty === "hard" ? (
+            {difficultyStorage === "hard" ? (
               <img className="iconsDifficulty" src={skull} alt="" />
             ) : (
               <></>

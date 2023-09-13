@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { GameContext } from "../../contexts/gameContext";
-import ScoreLocalStorage from "../../hooks/scoreLocalStorage";
+import NickNameLocalStorage from "../../store/nickNameLocalStorage";
+import ScoreLocalStorage from "../../store/scoreLocalStorage";
 import SideMenu from "../SideMenu";
 import "./styles.scss";
 
@@ -10,7 +11,8 @@ const ModalGame = () => {
   const totalTime = 10;
   const progress = (timeLeft / totalTime) * 100;
 
-  const [highScore, setHighScore] = ScoreLocalStorage("high_score");
+  const [highScore, setHighScoreStorage] = ScoreLocalStorage("high_score");
+  const [nickNameStorage, setNickNameStorage] = NickNameLocalStorage("nick_name");
 
   const {
     colorTime,
@@ -69,7 +71,10 @@ const ModalGame = () => {
     localStorage.clear();
     resetGame();
     setColors([]);
-    setHighScore("");
+    setHighScoreStorage("");
+    setNickNameStorage('')
+    setSecondsLeft(10)
+    setActive(false);
   };
 
   useEffect(() => {
@@ -84,11 +89,10 @@ const ModalGame = () => {
       setSecondsLeft(0);
 
       if (highScore < score) {
-        setHighScore([score, nickName]);
+        setHighScoreStorage(score);
+        setNickNameStorage(nickName)
       }
     }
-
-    console.log(highScore)
 
     return () => clearTimeout(seconds);
   }, [secondsLeft, active]);
@@ -128,7 +132,8 @@ const ModalGame = () => {
             Restart
           </span>
           <div className="boxScore">
-            <p className="score">High Score {highScore}</p>
+            <p className="score">High Score: {highScore}</p>
+            <p className="nickName">Nickname: {nickNameStorage}</p>
             <p className="score">{`Score ${score ? score : "-"}`}</p>
           </div>
         </div>

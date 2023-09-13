@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import ColorHistoryLocalStorage from "../../hooks/colorHistoryLocalStorage";
 import SVGCheck from "../../icons/SVGCheck";
 import SVGWrong from "../../icons/SVGWrong";
+import ColorHistoryLocalStorage from "../../store/colorHistoryLocalStorage";
 import "./styles.scss";
 
 import { GameContext } from "../../contexts/gameContext";

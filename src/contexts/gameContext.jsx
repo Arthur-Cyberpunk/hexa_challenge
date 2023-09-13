@@ -11,6 +11,9 @@ const GameProvider = ({ children }) => {
   const [options, setOptions] = useState([]);
   const [chooseDifficulty, setChooseDifficulty] = useState('');
   const [nickName, setNickName] = useState('');
+  
+    const meuDado = localStorage.getItem('difficulty');
+
 
   const colorTime = (selectedColor, currentColor) => {
     if (selectedColor !== undefined && selectedColor === currentColor) {
@@ -44,6 +47,9 @@ const GameProvider = ({ children }) => {
       setSecondsLeft(5);
     }
 
+    //console.log(difficultyStorage)
+    //console.log(chooseDifficulty)
+
     if (chooseDifficulty === 'easy') {
       const correctColor = generateRandomColor();
       const randomColor1 = generateRandomColor();
@@ -65,7 +71,7 @@ const GameProvider = ({ children }) => {
 
       setCurrentColor(correctColor);
       setOptions(randomOptions);
-    } else {
+    } else if (chooseDifficulty === 'hard') {
       const correctColor = generateRandomColor();
       const randomColor1 = generateRandomColor();
       const randomColor2 = generateRandomColor();
@@ -80,6 +86,9 @@ const GameProvider = ({ children }) => {
     }
 
     setActive(true);
+
+    //console.log(chooseDifficulty)
+    //console.log(meuDado)
   };
 
   return (
@@ -102,6 +111,8 @@ const GameProvider = ({ children }) => {
         startGame,
         nickName,
         setNickName,
+        //difficultyStorage,
+        meuDado,
       }}
     >
       {children}
