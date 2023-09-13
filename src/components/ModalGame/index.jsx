@@ -30,6 +30,7 @@ const ModalGame = () => {
     setOptions,
     startGame,
     chooseDifficulty,
+    setChooseDifficulty,
     nickName,
   } = useContext(GameContext);
 
@@ -65,18 +66,17 @@ const ModalGame = () => {
       setColors([]);
       startGame();
       setActive(true);
-      setSecondsLeft(10);
+      setSecondsLeft(30);
     }
   };
 
   const handleCleanLocalStorage = () => {
-    const difficulty = localStorage.getItem("difficulty");
     localStorage.clear();
-    localStorage.setItem("difficulty", difficulty);
     resetGame();
     setColors([]);
     setHighScoreStorage("");
     setNickNameStorage("");
+    setChooseDifficulty('')
     setSecondsLeft(10);
     setActive(false);
   };

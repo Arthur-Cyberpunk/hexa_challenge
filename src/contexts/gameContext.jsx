@@ -6,7 +6,7 @@ const GameProvider = ({ children }) => {
   const [colors, setColors] = useState([]);
   const [active, setActive] = useState(false);
   const [secondsChoose, setSecondsChoose] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(10);
+  const [secondsLeft, setSecondsLeft] = useState(30);
   const [currentColor, setCurrentColor] = useState("");
   const [options, setOptions] = useState([]);
   const [chooseDifficulty, setChooseDifficulty] = useState("");
@@ -43,7 +43,7 @@ const GameProvider = ({ children }) => {
   const startGame = () => {
     if (secondsLeft === 0) {
       setColors([]);
-      setSecondsLeft(5);
+      setSecondsLeft(30);
     }
 
     if (difficulty === "easy" || chooseDifficulty === "easy") {
