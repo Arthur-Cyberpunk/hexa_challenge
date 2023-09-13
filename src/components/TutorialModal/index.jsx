@@ -2,16 +2,17 @@ import SVGx from "../../icons/SVGx";
 import "./styles.scss";
 
 const TutorialModal = (props) => {
-    const closeModal = () => {
-        props.setModalOpen(false)
-      }
+  const closeModal = () => {
+    props.setModalOpen(false);
+  };
 
   return (
     <div className="containerTutorialModal">
-        
       <div>
         <span>Goals</span>
-        <span className="iconX" onClick={closeModal}><SVGx /></span>
+        <span className="iconX" onClick={closeModal}>
+          <SVGx />
+        </span>
         <p>
           The game consists of matching as many colors as possible in 30s. When
           the game starts, a random color will appear and for it you must 3
@@ -35,8 +36,7 @@ const TutorialModal = (props) => {
         <span>Difficulty</span>
         <p>
           There are three difficulties: <br /> <br /> - Easy - 3 colors options.{" "}
-          <br /> - Normal - 4 colors options. <br /> - Hard - 5 colors
-          options.
+          <br /> - Normal - 4 colors options. <br /> - Hard - 5 colors options.
         </p>
       </div>
     </div>

@@ -15,17 +15,39 @@ const GameProvider = ({ children }) => {
   const difficulty = localStorage.getItem("difficulty");
 
   const colorTime = (selectedColor, currentColor) => {
+    const backgrounds = [selectedColor, currentColor];
+
+    const isColorLight = (hexColor) => {
+      const r = parseInt(hexColor.slice(1, 3), 16);
+      const g = parseInt(hexColor.slice(3, 5), 16);
+      const b = parseInt(hexColor.slice(5, 7), 16);
+
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+      return luminance > 0.5;
+    };
+
+    const backgroundColor1 = backgrounds[0];
+    const backgroundColor2 = backgrounds[1];
+    const textColor1 = isColorLight(backgroundColor1) ? "#000" : "#fff";
+    const textColor2 = isColorLight(backgroundColor2) ? "#000" : "#fff";
+
     if (selectedColor !== undefined && selectedColor === currentColor) {
       const newColor = {
         selectedColor,
         secondsChoose,
+        textColor1,
+        textColor2,
       };
+
       setColors((prevDados) => [newColor, ...prevDados]);
     } else if (selectedColor !== undefined && selectedColor !== currentColor) {
       const newColor = {
         selectedColor,
         currentColor,
         secondsChoose,
+        textColor1,
+        textColor2,
       };
       setColors((prevDados) => [newColor, ...prevDados]);
     }

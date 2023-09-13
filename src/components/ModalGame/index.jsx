@@ -42,9 +42,7 @@ const ModalGame = () => {
     if (selectedColor === currentColor) {
       setScore(score + 5);
       setSecondsLeft(secondsLeft + 3);
-    } else if (selectedColor === undefined) {
-      setScore(score - 2);
-    } else {
+    } else if (selectedColor !== currentColor) {
       setScore(score - 1);
       setSecondsLeft(secondsLeft - 3);
     }
@@ -107,8 +105,9 @@ const ModalGame = () => {
         if (timeLeft > 0) {
           setTimeLeft(timeLeft - 1);
         } else {
+          setScore(score - 2);
           setTimeLeft(totalTime);
-          checkAnswer();
+          startGame();
         }
       }, 1000);
 

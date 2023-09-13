@@ -12,8 +12,7 @@ const SideMenu = () => {
   const [color, setColor] = ColorHistoryLocalStorage("colorAndTime");
 
   useEffect(() => {
-    if (active && secondsLeft >= 0) 
-    setColor(colors);
+    if (active && secondsLeft >= 0) setColor(colors);
   }, [colors, setColor]);
 
   return (
@@ -35,7 +34,10 @@ const SideMenu = () => {
               <div className="answers">
                 <div
                   className="color"
-                  style={{ backgroundColor: `${colors.selectedColor}` }}
+                  style={{
+                    backgroundColor: `${colors.selectedColor}`,
+                    color: `${colors.textColor1}`,
+                  }}
                 >
                   <p key={index} className="hexaColor">
                     {colors.selectedColor}
@@ -43,7 +45,10 @@ const SideMenu = () => {
                 </div>
                 <div
                   className={`color ${colors.currentColor ? "" : "active"}`}
-                  style={{ backgroundColor: `${colors.currentColor}` }}
+                  style={{
+                    backgroundColor: `${colors.currentColor}`,
+                    color: `${colors.textColor2}`,
+                  }}
                 >
                   <p key={index} className="hexaColor">
                     {colors.currentColor ? colors.currentColor : ""}
