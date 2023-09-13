@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+<div align='center'><img style="width:20%" src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/23508103-77c9-4f5c-9a14-0f3f77ebc402'/></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2>Hexa Challenge</h2>
 
-## Available Scripts
+  <p>Um jogo especial, para pessoas especiais, sim, estamos falando de um jogo onde você tem que saber a cor somente pelo numero hexadecimal.</p>
 
-In the project directory, you can run:
+👉 Live Demo: <a href='https://irongames-rho.vercel.app/'>Live Demo</a>
 
-### `npm start`
+<h2>Sobre o projeto</h2>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h3>Instalação:</h3>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p>Utilize npm install, para instalar as dependências e npm start, para iniciar o projeto.</p>
 
-### `npm test`
+<h3>Construido com:</h3>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+» React JS <br>
+» Sass <br>
+» Context api <br>
+» React-router-dom
 
-### `npm run build`
+<p>- O framework React JS, ja foi previamente posto como requisito.</p>
+<p>- O SASS, gosto dele por poder produzir codigo de uma maneira rápida e limpa.</p>
+<p>- O Context api, uma forma eficiente de passar props para outros componentes e não atrapalhar a performance do site.</p>
+<p>- O React-router-dom, para poder construir a home(/), e poder navegar para o gmae(/game), com mais facilidade.</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h2>Tomadas de decisões</h2>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p>Decidi por criar uma Home, onde o usuário pudesse digitar seu nickname(para ficar atrelado ao high score) ou não, pudesse escolher a dificuldade do jogo e assim inicia-lo, também contando com um tutorial escrito, para um melhor entendimento do jogo.</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p>Indo para o jogo, temos a interface pre estabelecida, com botao de Start, Restart, Opções de escolha de cores(com as devidas 'consequências'), Histórico de cores escolhidas e tempo, Resetar todo os dados e um botão Back to home(para voltar para a home).</p>
 
-### `npm run eject`
+<p>Acredito que as features estabelecidas previamente, combinadas com as novas e como as duas telas ficaram, se criou uma boa experiência para o usuario e intuitiva.</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p>Infezlimente os testes unitarios nao foram desenvolvidos, não possuo experiência no assunto, porém, mesmo assim tentei desenvolvê-lo, mas não obtive exito.</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h2>Estruturas de pastas</h2>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p>- public/</p>
+<p>- src/ </p>
+<p>&nbsp &nbsp- assets/ </p>
+<p>&nbsp &nbsp- components/ </p>
+<p>&nbsp &nbsp- contexts/ </p>
+<p> &nbsp &nbsp- icons/ </p>
+<p>&nbsp &nbsp- store/ </p>
+<p>&nbsp &nbsp- styles/ </p>
+<p>&nbsp &nbsp- App.js </p>
+<p>&nbsp &nbsp- index.js </p>
+<p>- setupTests.js </p>
+<p>- package.-lock.json </p>
+<p>- package.json </p>
+<p>- README.md </p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  
+    
+      
+      
+    
+      
+    
+  
+  
+  
 
-## Learn More
+<h2>Screenshots of the Project 📸</h2>
+<br>
+<h3 align='center'>Home Page 🏡</h3>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<div align='center'>
+<img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/b818b57d-cf3a-4f1c-ae89-0ee27c17876b'/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
+<h3 align='center'>Game</h3>
 
-### Code Splitting
+<div align='center'>
+<img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/4a0e409e-f432-4f0d-9ec4-5eb5c52d67b7'/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</div>
