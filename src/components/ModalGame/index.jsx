@@ -12,7 +12,8 @@ const ModalGame = () => {
   const progress = (timeLeft / totalTime) * 100;
 
   const [highScore, setHighScoreStorage] = ScoreLocalStorage("high_score");
-  const [nickNameStorage, setNickNameStorage] = NickNameLocalStorage("nick_name");
+  const [nickNameStorage, setNickNameStorage] =
+    NickNameLocalStorage("nick_name");
 
   const {
     colorTime,
@@ -63,17 +64,19 @@ const ModalGame = () => {
       setColors([]);
       startGame();
       setActive(true);
-      setSecondsLeft(10)
+      setSecondsLeft(10);
     }
   };
 
   const handleCleanLocalStorage = () => {
+    const difficulty = localStorage.getItem("difficulty");
     localStorage.clear();
+    localStorage.setItem("difficulty", difficulty);
     resetGame();
     setColors([]);
     setHighScoreStorage("");
-    setNickNameStorage('')
-    setSecondsLeft(10)
+    setNickNameStorage("");
+    setSecondsLeft(10);
     setActive(false);
   };
 
@@ -90,7 +93,7 @@ const ModalGame = () => {
 
       if (highScore < score) {
         setHighScoreStorage(score);
-        setNickNameStorage(nickName)
+        setNickNameStorage(nickName);
       }
     }
 
@@ -151,8 +154,17 @@ const ModalGame = () => {
         {active ? (
           <div className="boxRandomColors">
             {options.map((hexaColor, index) => (
-              <li className={`${chooseDifficulty === 'easy' ? "active" : chooseDifficulty === 'medium' ? "active2" : 'active3'}`} 
-              key={index} onClick={() => checkAnswer(hexaColor)}>
+              <li
+                className={`${
+                  chooseDifficulty === "easy"
+                    ? "active"
+                    : chooseDifficulty === "medium"
+                    ? "active2"
+                    : "active3"
+                }`}
+                key={index}
+                onClick={() => checkAnswer(hexaColor)}
+              >
                 {hexaColor}
               </li>
             ))}

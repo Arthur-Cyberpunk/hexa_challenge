@@ -12,20 +12,10 @@ import "./styles.scss";
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const { chooseDifficulty, setChooseDifficulty, nickName, setNickName } = useContext(GameContext);
+  const { nickName, setNickName } = useContext(GameContext);
 
-  const [difficultyStorage, setDifficultyStorage] = DifficultyLocalStorage("difficulty");
-
-  // const difficultyChosen = (props) => {
-  //   setChooseDifficulty(props);
-  //   setOpenDifficulty(true)
-  // };
-
-  // useEffect (() => {
-  //   setDifficultyStorage(chooseDifficulty)
-  // }, [chooseDifficulty, setDifficultyStorage])
-
-  console.log(difficultyStorage)
+  const [difficultyStorage, setDifficultyStorage] =
+    DifficultyLocalStorage("difficulty");
 
   return (
     <div className="containerHome">
