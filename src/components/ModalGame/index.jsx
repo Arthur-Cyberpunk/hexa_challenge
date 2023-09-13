@@ -77,7 +77,7 @@ const ModalGame = () => {
     setHighScoreStorage("");
     setNickNameStorage("");
     setChooseDifficulty('')
-    setSecondsLeft(10);
+    setSecondsLeft(30);
     setActive(false);
   };
 
