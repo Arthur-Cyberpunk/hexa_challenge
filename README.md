@@ -30,9 +30,15 @@
 
 <p>Indo para o jogo, temos a interface pre estabelecida, com botao de Start, Restart, Opções de escolha de cores(com as devidas 'consequências'), Histórico de cores escolhidas e tempo, Resetar todo os dados e um botão Back to home(para voltar para a home).</p>
 
+<p>A comunicação entre componentes, utilizando o context api, tornou tudo mais fácil e como eram dados 'simples', armazenados no Local Storage, para caso o usuário feche ou atualize a página, eles continuem lá.</p>
+
+<p>As imagens pude estar passando pelo 'Tiny.com', para diminuir o size delas, sem prejudicar a qualidade da imagem e tambem passando o site pelo GTmetrix, verificando a qualidade da performance(imagem sobre em 'Screenshots of the Project').</p>
+
 <p>Acredito que as features estabelecidas previamente, combinadas com as novas e como as duas telas ficaram, se criou uma boa experiência para o usuario e intuitiva.</p>
 
 <p>Infezlimente os testes unitarios nao foram desenvolvidos, não possuo experiência no assunto, porém, mesmo assim tentei desenvolvê-lo, mas não obtive exito.</p>
+
+<img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/b818b57d-cf3a-4f1c-ae89-0ee27c17876b'/>
 
 <h2>Estruturas de pastas</h2>
 
@@ -51,17 +57,6 @@
 <p>- package.json </p>
 <p>- README.md </p>
 
-  
-    
-      
-      
-    
-      
-    
-  
-  
-  
-
 <h2>Screenshots of the Project 📸</h2>
 <br>
 <h3 align='center'>Home Page 🏡</h3>
@@ -69,10 +64,20 @@
 <div align='center'>
 <img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/b818b57d-cf3a-4f1c-ae89-0ee27c17876b'/>
 
+</div>
+
 <br>
 <h3 align='center'>Game</h3>
 
 <div align='center'>
 <img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/4a0e409e-f432-4f0d-9ec4-5eb5c52d67b7'/>
+
+</div>
+
+<br>
+<h3 align='center'>Perfomance by GTmetrix</h3>
+
+<div align='center'>
+<img src='https://github.com/Arthur-Cyberpunk/hexa_challenge/assets/72763456/cb8cb87a-0196-4345-8dcf-6687e404c32a'/>
 
 </div>
